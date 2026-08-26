@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import httpx
 import pymongo
+import os
 from typing import Optional
 
 app = FastAPI(title="Rick & Morty Backend API")
@@ -15,15 +16,17 @@ app.add_middleware (
     allow_headers=["*"],
 )
 
+MONGO_URI = os.getenv("MONGO_URI" , "mongodb://localhost:27017/")
+
 try:
-    client = pymongo.MongoClient("mongodb://localhost:27017/", serverSelectionTimeoutMS=2000)
+    client = pymongo.MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
     client.server_info()
     db = client["rickmorty_db"]
     favorites_collection = db["favorites"]
     print("Conectado exitosamente a MongoDB")
-except Exception:
+except Exception as e:
     favorites_collection = None
-    print("MongoDB no esta disponible. Solo modo lectura")
+    print(f"Error al conectar a MongoDB: {e}")
 
 
 RICK_MORTY_API = "https://rickandmortyapi.com/api/character"
