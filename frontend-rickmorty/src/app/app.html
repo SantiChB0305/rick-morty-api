@@ -1,0 +1,132 @@
+<div class="container">
+  <header>
+    <h1>
+      <a><img class="emoji-header" src="https://cdn3.emoji.gg/emojis/3226-morty-angry-shocked.png"></a>
+      <a><img class="emoji-header" src="https://cdn3.emoji.gg/emojis/4746-rick-cool-smug.png"></a>
+      Rick & Morty Explorer
+    </h1>
+    <h3>Conoce a los personajes de la aclamada serie animada para adultos.</h3>
+    <h3>Guarda tus favoritos para recordarlos. 𖥔 ݁ ˖ִ🛸༄˖°</h3>
+  </header>
+
+  <!-- Navegación por Pestañas -->
+  <nav class="nav-tabs">
+    <button (click)="setTab('home')" [class.active]="activeTab === 'home'">Inicio</button>
+    <button (click)="setTab('search')" [class.active]="activeTab === 'search'">Buscar y Filtrar</button>
+    <button (click)="setTab('favorites')" [class.active]="activeTab === 'favorites'">Favoritos ({{ favorites.length }})</button>
+  </nav>
+
+  <!-- Vista 1: Inicio -->
+  <section *ngIf="activeTab === 'home'">
+    <div class="hero-card">
+      <h2>¡Bienvenido al Multiverso!</h2>
+      <p>¿Cuántas versiones de Rick puede haber?</p>
+    </div>
+
+    <div *ngIf="loadingHome" class="spinner">Cargando destacados...</div>
+
+    <main class="grid" *ngIf="!loadingHome && homeCharacters.length > 0">
+      <div class="card" *ngFor="let item of homeCharacters">
+        <img [src]="item.image" [alt]="item.name"/>
+        <div class="card-body">
+          <h3>{{ item.name }}</h3>
+          <p><strong>Estado:</strong> {{ item.status }}</p>
+          <p><strong>Especie:</strong> {{ item.species }}</p>
+
+          <div class="card-actions">
+            <button class="btn-detail" (click)="openDetail(item)">Ver Detalle</button>
+            <button class="btn-fav" [class.is-fav]="isFavorite(item.id)" (click)="toggleFavorite(item)">
+              {{ isFavorite(item.id) ? '♥ Favorito' : '♡ Agregar' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- Vista 2: Buscar Y Filtrar -->
+  <section *ngIf="activeTab === 'search'">
+    <div class="filters-section">
+      <input
+        type="text"
+        placeholder="Buscar personaje por nombre..."
+        [(ngModel)]="searchName"
+        (input)="loadCharacters()"
+      />
+
+      <select [(ngModel)]="selectedStatus" (change)="loadCharacters()">
+        <option value="">Todos los Estados</option>
+        <option value="alive">Vivo</option>
+        <option value="dead">Muerto</option>
+        <option value="unknown">Desconocido</option>
+      </select>
+
+      <select [(ngModel)]="selectedSpecies" (change)="loadCharacters()">
+        <option value="">Todas las especies</option>
+        <option value="human">Humano</option>
+        <option value="alien">Alien</option>
+      </select>
+    </div>
+
+    <div *ngIf="loadingSearch" class="spinner">Cargando personajes...</div>
+
+    <div *ngIf="!loadingSearch && characters.length === 0" class="no-results">
+      <p>No hay personajes que coincidan con la búsqueda</p>
+    </div>
+
+    <main class="grid" *ngIf="!loadingSearch && characters.length > 0">
+      <div class="card" *ngFor="let item of characters">
+        <img [src]="item.image" [alt]="item.name"/>
+        <div class="card-body">
+          <h3>{{ item.name }}</h3>
+          <p><strong>Estado:</strong> {{ item.status }}</p>
+          <p><strong>Especie:</strong> {{ item.species }}</p>
+
+          <div class="card-actions">
+            <button class="btn-detail" (click)="openDetail(item)">Ver Detalle</button>
+            <button class="btn-fav" [class.is-fav]="isFavorite(item.id)" (click)="toggleFavorite(item)">
+              {{ isFavorite(item.id) ? '♥ Favorito' : '♡ Agregar' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- Vista 3: Favoritos -->
+  <section *ngIf="activeTab === 'favorites'">
+    <div *ngIf="favorites.length === 0" class="no-results">
+      <p>Aún no has guardado personajes favoritos. ¡Explora y añade algunos!</p>
+    </div>
+
+    <main class="grid" *ngIf="favorites.length > 0">
+      <div class="card" *ngFor="let item of favorites">
+        <img [src]="item.image" [alt]="item.name"/>
+        <div class="card-body">
+          <h3>{{ item.name }}</h3>
+          <p><strong>Estado:</strong> {{ item.status }}</p>
+          <p><strong>Especie:</strong> {{ item.species }}</p>
+
+          <div class="card-actions">
+            <button class="btn-detail" (click)="openDetail(item)">Ver Detalle</button>
+            <button class="btn-fav is-fav" (click)="toggleFavorite(item)">♥ Quitar</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- Modal de Detalle -->
+  <div class="modal" *ngIf="selectedCharacter" (click)="closeDetail()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close" (click)="closeDetail()">&times;</span>
+      <img [src]="selectedCharacter.image" [alt]="selectedCharacter.name"/>
+      <h2>{{ selectedCharacter.name }}</h2>
+      <p><strong>Estado:</strong> {{ selectedCharacter.status }}</p>
+      <p><strong>Especie:</strong> {{ selectedCharacter.species }}</p>
+      <p><strong>Género:</strong> {{ selectedCharacter.gender }}</p>
+      <p *ngIf="selectedCharacter.origin"><strong>Origen:</strong> {{ selectedCharacter.origin.name }}</p>
+      <p *ngIf="selectedCharacter.location"><strong>Ubicación:</strong> {{ selectedCharacter.location.name }}</p>
+    </div> 
+  </div>
+</div>

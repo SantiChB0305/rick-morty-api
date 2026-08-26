@@ -1,0 +1,251 @@
+body {
+  background-color: black;
+  margin: 0;
+  color: #ffffff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: black;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-family: 'RickAndMortyFont', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: #28a745;
+}
+
+p {
+  color: grey;
+}
+
+h3 {
+  color: #ccc;
+}
+
+.card h3,
+.card p,
+.card-body p {
+  color: black
+}
+
+.emoji-header {
+  width: 1.2em;
+  height: auto;
+  vertical-align: middle;
+}
+
+.filters-section {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.filters-section input,
+.filters-section select,
+.filters-section button {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  flex: 1;
+  min-width: 150px;
+  font-size: 14px;
+}
+
+.filters-section button {
+  padding: 12px 18px;
+  font-size: 15px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+}
+
+.filters-section button.active {
+  background: #28a745;
+}
+
+.filters-section button:hover {
+  transform: scale(1.05);
+}
+
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.nav-tabs button {
+  background-color: green;
+  color: #cccccc;
+  border: 1px solid #444;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 15px;
+  transition:
+    transform 0.2d ease, background-color 0.2s ease, box-shahdow 0.2s ease;
+}
+
+.nav-tabs button.active,
+.nav-tabs button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px;
+  box-shadow: 0 4px 12px rgba(0, 181, 204, 0.4);
+  background-color: #28a745;
+  color: #ffffff;
+  border-color: lightgreen;
+}
+
+.hero-card {
+  text-align: center;
+  padding: 50px 20px;
+  background: #111111;
+  border: 1px solid #333;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.hero-card h2 {
+  color: white;
+}
+
+.btn-hero {
+  margin-top: 15px;
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn-detail {
+  font-size: 14px;
+  font-weight: bold;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  background: #17a2b8;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.btn-fav {
+  font-size: 14px;
+  font-weight: bold;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  background: #f8f9fa;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-fav.is-fav {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.btn-detail:hover,
+.btn-fav:hover {
+  transform: scale(1.08);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.spinner {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
