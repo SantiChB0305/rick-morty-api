@@ -26,6 +26,9 @@ export class App implements OnInit {
   loadingHome: boolean = false;
   loadingSearch: boolean = false;
 
+  currentPage: number =1;
+  totalPages: number =1;
+
   constructor(private characterService: CharacterService) {}
 
   ngOnInit(): void {
@@ -57,20 +60,31 @@ export class App implements OnInit {
     });
   }
 
-  loadCharacters(): void {
+  loadCharacters(page: number = 1): void {
+    this.currentPage = page;
     this.loadingSearch = true;
+
     this.characterService
-      .getCharacters(this.searchName, this.selectedStatus, this.selectedSpecies)
+      .getCharacters(this.searchName, this.selectedStatus, this.selectedSpecies, this.currentPage)
       .subscribe({
         next: (data) => {
           this.characters = data.results || [];
+          this.totalPages = data.info?.pages || 1;
           this.loadingSearch = false;
         },
         error: () => {
           this.characters = [];
+          this.totalPages =1;
           this.loadingSearch = false;
         }
       });
+  }
+
+  changePage(delta: number): void {
+    const newPage = this.currentPage + delta;
+    if (newPage >= 1 && newPage <= this.totalPages){
+      this.loadCharacters(newPage);
+    }
   }
 
   loadFavorites(): void {
@@ -106,10 +120,10 @@ export class App implements OnInit {
     this.selectedCharacter = null;
   }
 
-  clearFilters(){
+  clearFilters(): void{
     this.searchName= '';
     this.selectedStatus= '';
     this.selectedSpecies= '';
-    this.loadCharacters();
+    this.loadCharacters(1);
   }
 }

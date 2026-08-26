@@ -94,6 +94,13 @@
         </div>
       </div>
     </main>
+
+    <div class="pagination-controls" *ngIf="!loadingSearch && characters.length > 0">
+      <button [disabled]="currentPage === 1" (click)="changePage(-1)">← Anterior</button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button [disabled]="currentPage === totalPages" (click)="changePage(1)">Siguiente →</button>
+    </div>
+
   </section>
 
   <!-- Vista 3: Favoritos -->

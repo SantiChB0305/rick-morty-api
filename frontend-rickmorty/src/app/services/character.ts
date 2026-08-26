@@ -23,6 +23,7 @@ import { Observable } from 'rxjs';
 
   getCharacters(name: string = '', status: string = '', species: string = '', page: number = 1): Observable<any>{
     let params = new HttpParams().set('page', page.toString());
+    
     if (name) params =  params.set('name', name);
     if (status) params = params.set('status', status);
     if (species) params = params.set('species', species);

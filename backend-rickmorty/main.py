@@ -45,10 +45,11 @@ async def get_character(
     name: Optional[str] = Query(None),
     status: Optional[str] = Query(None),
     species: Optional[str] = Query(None),
-    page: int = 1
+    page: int = Query(1, ge=1)
 ):
     """Proxy hacia Rick & Morty API con filtros"""
-    params: dict = {"page": page}
+    safe_page = max(1, page)
+    params: dict = {"page": safe_page}
     if name: params["name"] = name
     if status: params["status"] = status
     if species: params["species"] = species
