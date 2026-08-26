@@ -67,6 +67,8 @@
         <option value="human">Humano</option>
         <option value="alien">Alien</option>
       </select>
+
+      <button class = "btn-clear" (click)="clearFilters()">Limpiar Filtros</button>
     </div>
 
     <div *ngIf="loadingSearch" class="spinner">Cargando personajes...</div>

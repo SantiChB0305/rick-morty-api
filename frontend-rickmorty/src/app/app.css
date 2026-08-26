@@ -79,6 +79,16 @@ h1 {
   border: none;
   font-weight: bold;
 }
+.filters-section .btn-clear {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease, baackgroun-color 0.2s ease;
+}
 
 .filters-section button.active {
   background: #28a745;
@@ -99,6 +109,7 @@ h1 {
   background-color: green;
   color: #cccccc;
   border: 1px solid #444;
+  border-radius: 8px;
   padding: 12px 24px;
   cursor: pointer;
   font-size: 15px;

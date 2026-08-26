@@ -105,4 +105,11 @@ export class App implements OnInit {
   closeDetail(): void {
     this.selectedCharacter = null;
   }
+
+  clearFilters(){
+    this.searchName= '';
+    this.selectedStatus= '';
+    this.selectedSpecies= '';
+    this.loadCharacters();
+  }
 }
