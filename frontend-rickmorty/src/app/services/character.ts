@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
  })
  export class CharacterService {
-  private apiUrl = 'https://rick-morty-api-1-0oqu.onrender.com/';
+  private apiUrl = 'https://rick-morty-api-1-0oqu.onrender.com/api';
 
   constructor(private http: HttpClient) {}
 
