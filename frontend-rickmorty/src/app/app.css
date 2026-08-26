@@ -25,9 +25,10 @@ h1 {
   font-family: 'RickAndMortyFont', sans-serif;
   font-size: 4rem;
   letter-spacing: 2px;
-  color: #28a745;
-  animation: floatTitle 3.5s ease-in-out infinite;
+  color: #17a2b8;
+  animation: floatTitle 4.5s ease-in-out infinite;
   display: inline-block;
+  -webkit-text-stroke: 0.3px #28a745;
 }
 
 @keyframes floatTitle{
@@ -35,7 +36,7 @@ h1 {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(25px);
   }
 }
 
@@ -235,7 +236,7 @@ h1 {
   font-size: 14px;
   font-weight: bold;
   transition: transform 0.2s ease, background-color 0.2s ease;
-  background: #17a2b8;
+  background: #28a745;
   color: white;
   border: none;
   padding: 10px 14px;
