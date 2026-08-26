@@ -1,8 +1,6 @@
 <div class="container">
   <header>
     <h1>
-      <a><img class="emoji-header" src="https://cdn3.emoji.gg/emojis/3226-morty-angry-shocked.png"></a>
-      <a><img class="emoji-header" src="https://cdn3.emoji.gg/emojis/4746-rick-cool-smug.png"></a>
       Rick & Morty Explorer
     </h1>
     <h3>Conoce a los personajes de la aclamada serie animada para adultos.</h3>
@@ -19,8 +17,11 @@
   <!-- Vista 1: Inicio -->
   <section *ngIf="activeTab === 'home'">
     <div class="hero-card">
-      <h2>¡Bienvenido al Multiverso!</h2>
-      <p>¿Cuántas versiones de Rick puede haber?</p>
+      <img src="rick-portal.png" alt="" class="rick-portal-img">
+      <div class="hero-text-content">
+        <h2>¡Bienvenido al Multiverso!</h2>
+        <p>¿Cuántas versiones de Rick puede haber?</p>
+      </div>
     </div>
 
     <div *ngIf="loadingHome" class="spinner">Cargando destacados...</div>

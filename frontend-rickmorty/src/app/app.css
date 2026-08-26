@@ -15,21 +15,28 @@ body {
 header {
   text-align: center;
   margin-bottom: 25px;
+  h3 {
+    color: white;
+    font-size: 22px;
+  }
 }
 
 h1 {
   font-family: 'RickAndMortyFont', sans-serif;
-  font-size: 3rem;
+  font-size: 4rem;
   letter-spacing: 2px;
   color: #28a745;
+  animation: floatTitle 3.5s ease-in-out infinite;
+  display: inline-block;
 }
 
-p {
-  color: grey;
-}
-
-h3 {
-  color: #ccc;
+@keyframes floatTitle{
+  0%, 100%{
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .card h3,
@@ -110,12 +117,57 @@ h3 {
 }
 
 .hero-card {
+  position: relative; 
   text-align: center;
-  padding: 50px 20px;
+  padding: 65px 20px;
   background: #111111;
   border: 1px solid #333;
   border-radius: 12px;
   margin-bottom: 30px;
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rick-portal-img {
+  position: absolute;
+  width: 750px; 
+  height: auto;
+  z-index: 1;
+  opacity: 0.7; 
+  filter: drop-shadow(0 0 15px #97ce4c);
+  transform: translate(-50%, -50%);
+  animation: spinPortal 25s linear infinite;
+  pointer-events: none;
+}
+
+.hero-text-content {
+  position: relative;
+  z-index: 10; 
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  font-size: 25px;
+  p {
+    color: white
+  }
+  h2 {
+    font-family: 'RickAndMortyFont', sans-serif;
+    color: white;
+    margin-top: 0;
+  }
+}
+
+
+
+.hero-card h2 {
+  color: white;
+  margin-top: 0;
+}
+
+@keyframes spinPortal {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .hero-card h2 {
