@@ -52,6 +52,14 @@ h1 {
   vertical-align: middle;
 }
 
+.no-results {
+  text-align: center;
+  padding: 30px 20px;
+  p{
+    color: white !important;
+  }
+}
+
 .filters-section {
   display: flex;
   gap: 10px;
